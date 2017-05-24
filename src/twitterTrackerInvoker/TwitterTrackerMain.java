@@ -14,14 +14,11 @@ public class TwitterTrackerMain {
 		String consumerKey = "rjGn4uBECAwrOK5TpDilQ97Kz";
 		String consumerSecret = "lGz0zQZQp5fJVs11MK3o4WFi3CHIwRYvmaBqCtqkCRUvDYl6hl";
 		String accessToken = "63850197-pcJvniIvgdq2zQCavubcWUz99nsRHq8BLde3k8rLT"; 
-		String accessTokenSecret = "NH3hngVK1HL1lShf3SKAyfiGYme26Rivx7C5iQuObbYtr";
-
-		
+		String accessTokenSecret = "NH3hngVK1HL1lShf3SKAyfiGYme26Rivx7C5iQuObbYtr";		
 		String consumerKey2 		= "eVT2QIr8bfqfeP4254SzjqTWw";
 		String consumerSecret2		= "gZgYBmTqWNEHmuDjUmqsasLTYq9nnhwmPR0emnLVSZKF0mTAm3";
 		String accessToken2			= "63850197-Rvbl8xvP2V3G5HxTIixH6TwKqFBqHf0YCo1gluqlU"; 
 		String accessTokenSecret2 	= "x3UOKtwEy42eRRDfiToIHCkfXc1D8X43AmLtbkpNjT4K0";
-
 		
 		SampleStreamExample sse = new SampleStreamExample(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 		Long[] ids = new Long[1];
@@ -33,12 +30,9 @@ public class TwitterTrackerMain {
 		
 		sse.setKeywords(words);
 		sse.setUserIds(ids);
-
-
-		sse.run();
-
 		
-
+		sse.run();
+		
 		BlockingQueue bq = sse.getBlockingQueue();
 
 		while (true){
@@ -53,42 +47,23 @@ public class TwitterTrackerMain {
 				break;
 
 			}
-
-
-
-
-
 		}
-		
-	
-
 	}
 
 	public static void processJsonEntry (String jsonEntry) {
 		JSONObject entry;
 		try {
 			entry = new JSONObject(jsonEntry);
-		
-		String id = entry.getString("id");
-		String text = entry.getString("text");
-		String createdAt = entry.getString("created_at");		
-		JSONObject user = entry.getJSONObject("user");
-		String userId = user.getString("id");
-		String name = user.getString("name");
-		String screen_name = user.getString("screen_name");
-		
-		System.out.println(id + " " + text + " " + name );
-		
+			String id = entry.getString("id");
+			String text = entry.getString("text");
+			String createdAt = entry.getString("created_at");		
+			JSONObject user = entry.getJSONObject("user");
+			String userId = user.getString("id");
+			String name = user.getString("name");
+			String screen_name = user.getString("screen_name");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-
-
-
-
 }
-
